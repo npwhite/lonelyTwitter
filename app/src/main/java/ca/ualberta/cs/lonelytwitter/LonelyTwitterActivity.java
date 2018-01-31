@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2018 Team X, CMPUT301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behaviour at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact whitefie@ualberta.ca
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -26,6 +32,13 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * represents the LonelyTwitterActivity
+ * author: Nicholas Whitefield
+ * version: 1.0
+ * @see Tweetable
+ * @see Tweet
+ */
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "tweets.sav";
@@ -36,6 +49,10 @@ public class LonelyTwitterActivity extends Activity {
 	private ArrayAdapter<Tweet> adapter;
 	
 	/** Called when the activity is first created. */
+	/**
+	 * on create method
+	 * @param savedInstanceState current state of app in emulator
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,10 +63,16 @@ public class LonelyTwitterActivity extends Activity {
 		Button saveButton = (Button) findViewById(R.id.save);
 		Button clearButton = (Button) findViewById(R.id.clear);			// lab 3
 
+
+
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		clearButton.setOnClickListener(new View.OnClickListener() {
 
+			/**
+			 * method which monitors click
+			 * @param v view
+			 */
 			public void onClick(View v) {
 				tweetList.clear();
 			}
@@ -58,6 +81,10 @@ public class LonelyTwitterActivity extends Activity {
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
+			/**
+			 * method which monitors click
+			 * @param v view
+			 */
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
@@ -72,6 +99,9 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+	/**
+	 * Invoked when app  starts
+	 */
 	@Override
 	protected void onStart() {
 
@@ -87,6 +117,9 @@ public class LonelyTwitterActivity extends Activity {
 
 	}
 
+	/**
+	 * loads information from previous runs
+	 */
 	private void loadFromFile() {
 
 		try {
@@ -107,7 +140,10 @@ public class LonelyTwitterActivity extends Activity {
 		}
 
 	}
-	
+
+	/**
+	 * saves new info securely
+	 */
 	private void saveInFile() {
 		try {
 
@@ -128,6 +164,9 @@ public class LonelyTwitterActivity extends Activity {
 		}
 	}
 
+	/**
+	 * destruction method 
+	 */
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
